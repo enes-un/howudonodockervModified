@@ -1,14 +1,16 @@
 package com.nulab.howudonodocker.controllers;
 
+import com.nulab.howudonodocker.SimpleJwt;
 import com.nulab.howudonodocker.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import com.nulab.howudonodocker.model.User;
 import com.nulab.howudonodocker.repository.UserRepository;
 import java.util.List;
-
+import java.util.Optional;
+import com.nulab.howudonodocker.SimpleJwt;
 @RestController
-@RequestMapping("/users")
+//@RequestMapping("/users")
 public class UserController {
 
     @Autowired
@@ -18,13 +20,15 @@ public class UserController {
     private UserService userService;
 
     @PostMapping("/register")
-    public User createUser(@RequestBody User user) {
-        return userRepository.save(user);
+    public String createUser(@RequestBody User user) {
+        userRepository.save(user);
+        return  SimpleJwt.createToken(user.getEmail(), user.getPassword());
     }
 
     @PostMapping("/login")
     public String login(@RequestBody User loginRequest) {
-        return userService.login(loginRequest.getEmail(), loginRequest.getPassword());
+        System.out.println(userService.login(loginRequest.getEmail(), loginRequest.getPassword()));
+        return SimpleJwt.createToken(loginRequest.getEmail(), loginRequest.getPassword());
     }
 
     @GetMapping
