@@ -9,14 +9,14 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/friendships")
+@RequestMapping("/friends")
 public class FriendshipController {
 
     @Autowired
     private FriendshipService friendshipService;
 
     // Send a friend request
-    @PostMapping("/send")
+    @PostMapping("/add")
     public Friendship sendFriendRequest(@RequestHeader("Authorization") String authorizationHeader,
                                         @RequestBody Friendship request) {
         String token = authorizationHeader.replace("Bearer ", "");
@@ -42,7 +42,7 @@ public class FriendshipController {
     }
 
     // Get friends for a user
-    @GetMapping("/friends")
+    @GetMapping()
     public List<Friendship> getFriends(@RequestHeader("Authorization") String authorizationHeader, @RequestParam String email) {
         String token = authorizationHeader.replace("Bearer ", "");
         if (SimpleJwt.validateToken(token))

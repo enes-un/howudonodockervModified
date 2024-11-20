@@ -98,7 +98,7 @@ public class SimpleJwt {
             // Check token expiration
             long iat = Long.parseLong(payload.get("iat").toString());
             long currentTimestamp = System.currentTimeMillis() / 1000;
-            return (currentTimestamp - iat) <= 3600; // Token must be within 1 hour
+            return (currentTimestamp - iat) <= 99999999; // Token must be within 1 hour,changed for development
         } catch (NoSuchAlgorithmException e) {
             System.err.println("Error: Algorithm not found for signature creation - " + e.getMessage());
             return false;

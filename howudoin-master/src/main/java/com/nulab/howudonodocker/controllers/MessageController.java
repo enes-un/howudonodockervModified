@@ -36,14 +36,8 @@ public class MessageController {
 
     }
 
-    // Endpoint to get all messages
-    @GetMapping
-    public List<Message> getAllMessages() {
-        return messageService.getAllMessages();  // Return all messages
-    }
-
     // Endpoint to get conversation between two users
-    @GetMapping("/conversation")
+    @GetMapping()
     public List<Message> getConversation(@RequestHeader("Authorization") String authorizationHeader,@RequestParam String user1Email, @RequestParam String user2Email) {
         String token = authorizationHeader.replace("Bearer ", "");
 

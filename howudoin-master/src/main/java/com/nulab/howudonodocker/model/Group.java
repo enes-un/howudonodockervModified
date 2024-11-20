@@ -28,6 +28,8 @@ public class Group {
     }
 
     public List<String> getMembers() {
-        return members;
+        return this.members;
     }
+
+    public String getId(){return this.id;}
 }

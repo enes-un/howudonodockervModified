@@ -14,7 +14,6 @@ public class Message {
     private String receiverEmail;
     private String content;
     private String groupId;
-    private LocalDateTime timestamp;
 
     // Getters and Setters
     public String getId() {
@@ -51,12 +50,5 @@ public class Message {
     public String getGroupId() {return groupId;}
     public void setGroupId(String groupId) {this.groupId = groupId;}
 
-    public LocalDateTime getTimestamp() {
-        return timestamp;
-    }
-
-    public void setTimestamp(LocalDateTime timestamp) {
-        this.timestamp = timestamp;
-    }
 }
 

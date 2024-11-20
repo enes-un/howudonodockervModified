@@ -25,8 +25,8 @@ public class GroupController {
 
         // Validate the token and user credentials
         if (SimpleJwt.validateToken(token)) {
-            groupService.createGroup(group);
-            return "Group created successfully.";
+            Group groupFinal = groupService.createGroup(group);
+            return groupFinal.getId();
         } else {
             return "Unauthorized: Invalid token or credentials.";
         }

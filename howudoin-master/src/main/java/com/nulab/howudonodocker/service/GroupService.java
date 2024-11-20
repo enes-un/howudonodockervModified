@@ -29,12 +29,12 @@ public class GroupService {
 
 
     // Create a new group
-    public void createGroup(Group group) {
+    public Group createGroup(Group group) {
 
         if (group.getMembers() == null || group.getMembers().isEmpty()) {
             throw new RuntimeException("Group must have at least one member.");
         }
-        groupRepository.save(group);
+        return groupRepository.save(group);
     }
 
     // Add a new member to an existing group
@@ -58,7 +58,6 @@ public class GroupService {
             groupMessage.setReceiverEmail(member);
             groupMessage.setContent(message.getContent());
             groupMessage.setGroupId(groupId);
-            groupMessage.setTimestamp(LocalDateTime.now());
             messageRepository.save(groupMessage);
         }
     }
@@ -67,9 +66,7 @@ public class GroupService {
     public List<Message> getGroupMessages(String groupId) {
 
         Group group = groupRepository.findById(groupId).orElseThrow(() -> new RuntimeException("Group not found"));
-        return messageRepository.findAll().stream()
-                .filter(message -> group.getMembers().contains(message.getReceiverEmail()))
-                .collect(Collectors.toList());
+        return messageRepository.findByGroupId(groupId);
     }
 
     // Retrieve the list of members in a group
