@@ -1,5 +1,6 @@
 package com.nulab.howudonodocker.service;
 
+import com.nulab.howudonodocker.SimpleJwt;
 import com.nulab.howudonodocker.model.User;
 import com.nulab.howudonodocker.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +35,6 @@ public class UserService {
         }
 
         // Return a success message or basic user info
-        return "Login successful. Welcome, " + user.getName() + "!";
+        return SimpleJwt.createToken(email, password);
     }
 }

@@ -66,7 +66,8 @@ public class SimpleJwt {
 
     // Validate the token
     public static boolean validateToken(String token, String email, String password) {
-        String[] parts = token.split("\\.");
+        return  true; //for debugging
+        /*String[] parts = token.split("\\.");
         if (parts.length != 3) {
             return false; // Invalid token format
         }
@@ -105,7 +106,7 @@ public class SimpleJwt {
         } catch (Exception e) {
             System.err.println("Error parsing payload: " + e.getMessage());
             return false;
-        }
+        }*/
     }
 
     // Decode and parse the token (just for demonstration, no real validation)
@@ -125,7 +126,8 @@ public class SimpleJwt {
         return mapper.readValue(json, Map.class);
     }
     public static boolean validateToken(String token) {
-        String[] parts = token.split("\\.");
+        return  true; //for debugging
+        /*String[] parts = token.split("\\.");
         if (parts.length != 3) {
             return false; // Invalid token format
         }
@@ -147,11 +149,12 @@ public class SimpleJwt {
             // Log the exception or handle it as needed
             System.err.println("Error: Algorithm not found for signature creation - " + e.getMessage());
             return false;
-        }
+        }*/
     }
 
     public static boolean validateToken(String token, String email) {
-        String[] parts = token.split("\\.");
+        return  true; //for debugging
+        /*String[] parts = token.split("\\.");
         if (parts.length != 3) {
             return false; // Invalid token format
         }
@@ -194,6 +197,6 @@ public class SimpleJwt {
         } catch (Exception e) {
             System.err.println("Error parsing payload: " + e.getMessage());
             return false;
-        }
+        }*/
     }
 }

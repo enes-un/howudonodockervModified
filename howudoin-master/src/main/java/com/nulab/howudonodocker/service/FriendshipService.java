@@ -49,4 +49,8 @@ public class FriendshipService {
         sentFriends.addAll(receivedFriends); // Combine both lists
         return sentFriends;
     }
+    public List<Friendship> getAllFriendships()
+    {
+        return friendshipRepository.findAll();
+    }
 }

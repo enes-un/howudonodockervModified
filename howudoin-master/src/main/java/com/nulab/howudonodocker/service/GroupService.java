@@ -76,5 +76,4 @@ public class GroupService {
         return group.getMembers();
     }
 
-
 }
