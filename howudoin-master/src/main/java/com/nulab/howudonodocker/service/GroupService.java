@@ -75,5 +75,11 @@ public class GroupService {
         Group group = groupRepository.findById(groupId).orElseThrow(() -> new RuntimeException("Group not found"));
         return group.getMembers();
     }
+    public List<Group> getGroupsByEmail(String email) {
+        List<Group> groups = groupRepository.findAll();
+        return groups.stream()
+                .filter(group -> group.getMembers() != null && group.getMembers().contains(email))
+                .collect(Collectors.toList());
+    }
 
 }

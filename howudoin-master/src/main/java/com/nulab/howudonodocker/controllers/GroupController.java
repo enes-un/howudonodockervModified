@@ -89,5 +89,16 @@ public class GroupController {
             return ResponseEntity.status(401).body(new ApiResponse<>(401, "Unauthorized: Invalid token or credentials", null));
         }
     }
-
+    @GetMapping
+    public ResponseEntity<ApiResponse<List<Group>>> getGroups(
+            @RequestHeader("Authorization") String authorizationHeader,
+            @RequestParam String email){
+        String token = authorizationHeader.replace("Bearer ", "");
+        if (SimpleJwt.validateToken(token)) {
+            List<Group> members = groupService.getGroupsByEmail(email);
+            return ResponseEntity.ok(new ApiResponse<>(200, "Groups", members));
+        } else {
+            return ResponseEntity.status(401).body(new ApiResponse<>(401, "Unauthorized: Invalid token or credentials", null));
+        }
+    }
 }
